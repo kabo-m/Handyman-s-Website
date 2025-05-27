@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | Max's Handyman Services</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="appointment.js" defer></script> 
+</head>
+<body>
+    <header>
+    <div id="success-message" class="success-message" style="display: none;">
+        Your appointment has been successfully booked.
+    </div>
+        <img src="https://s.clipartkey.com/mpngs/s/24-241273_about-town-need-a-hvac-maintenance-clipart.png" alt="logo" id="logo-img">
+        <h1>Book an Appointment</h1>
+        <p>Fill out the form below to schedule an appointment with Max.</p>
+    </header>
+    <main>
+        <section class="appointment-form-section">
+            <form id="appointmentForm" action="appointment_process.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Needed</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- Select a Service --</option>
+                        <option value="Plumbing">Plumbing</option>
+                        <option value="Electrical Work">Electrical Work</option>
+                        <option value="Furniture Assembly">Furniture Assembly</option>
+                        <option value="Painting and Decorating">Painting and Decorating</option>
+                        <option value="General Repairs">General Repairs</option>
+                    </select>
+                </div>                
+                <button type="submit">Book Appointment</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <a href="index2.html">Home</a> |
+        <a href="services.html">Services</a> |
+        <a href="contact.html">Contact Us</a>
+    </footer>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === '1') {
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+
+            const newURL = window.location.href.split('?')[0];
+            window.history.replaceState(null, null, newURL);
+        }
+    </script>
+</body>
+</html>
